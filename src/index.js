@@ -29,16 +29,6 @@
 // http://www.ptu.panda-games.net/
 import $ from '../node_modules/jquery/dist/jquery.min.js';
 
-let pokemonTables = $('.pokemon');
-let pokemonTablesDict = {};
-
-let arrayOfIds = [];
-let currentId = 0;
-for (let table of pokemonTables) {
-    let id = 'pokemon_' + currentId++;
-    arrayOfIds.push(id);
-    table.id = id;
-}
 
 let StripBoldTags = function (string) {
     return string.replace('<b>', '').replace('</b>', '');
@@ -103,12 +93,26 @@ let ScrapeMovesTable = function (id) {
     return {moves};
 };
 
-for (let id of arrayOfIds) {
-    let pokeStatObj = {};
-    Object.assign(pokeStatObj, ScrapeInfoTable(id));
-    Object.assign(pokeStatObj, ScrapeAbilitiesTable(id));
-    Object.assign(pokeStatObj, ScrapeMovesTable(id));
 
-    console.log(pokeStatObj);
+let ScrapePageForPokemon() {
+	let pokemonTables = $('.pokemon');
+	let pokemonTablesDict = {};
+
+	let arrayOfIds = [];
+	let currentId = 0;
+	for (let table of pokemonTables) {
+		let id = 'pokemon_' + currentId++;
+		arrayOfIds.push(id);
+		table.id = id;
+	}
+
+	for (let id of arrayOfIds) {
+		let pokeStatObj = {};
+		Object.assign(pokeStatObj, ScrapeInfoTable(id));
+		Object.assign(pokeStatObj, ScrapeAbilitiesTable(id));
+		Object.assign(pokeStatObj, ScrapeMovesTable(id));
+
+		console.log(pokeStatObj);
+	}
 }
 
