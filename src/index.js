@@ -94,25 +94,25 @@ let ScrapeMovesTable = function (id) {
 };
 
 
-let ScrapePageForPokemon() {
-	let pokemonTables = $('.pokemon');
-	let pokemonTablesDict = {};
+export default ScrapePageForPokemon = function () {
+    let pokemonTables = $('.pokemon');
+    let pokemonTablesDict = {};
 
-	let arrayOfIds = [];
-	let currentId = 0;
-	for (let table of pokemonTables) {
-		let id = 'pokemon_' + currentId++;
-		arrayOfIds.push(id);
-		table.id = id;
-	}
+    let arrayOfIds = [];
+    let currentId = 0;
+    for (let table of pokemonTables) {
+        let id = 'pokemon_' + currentId++;
+        arrayOfIds.push(id);
+        table.id = id;
+    }
 
-	for (let id of arrayOfIds) {
-		let pokeStatObj = {};
-		Object.assign(pokeStatObj, ScrapeInfoTable(id));
-		Object.assign(pokeStatObj, ScrapeAbilitiesTable(id));
-		Object.assign(pokeStatObj, ScrapeMovesTable(id));
+    for (let id of arrayOfIds) {
+        let pokeStatObj = {};
+        Object.assign(pokeStatObj, ScrapeInfoTable(id));
+        Object.assign(pokeStatObj, ScrapeAbilitiesTable(id));
+        Object.assign(pokeStatObj, ScrapeMovesTable(id));
 
-		console.log(pokeStatObj);
-	}
-}
+        console.log(pokeStatObj);
+    }
+};
 
