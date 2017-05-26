@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokémon Scraper</title>
+
+    <!--<link rel="stylesheet" href="build/styles.css">-->
+    <script src="build/app.js" defer></script>
+</head>
+<body>
+
+<div id="generated">
+    <div class="pokemon"><br>
+        <hr>
+        <br>
+        <table border="1" width="300em" id="info_table">
+            <tbody>
+            <tr>
+                <th>#82 - Magneton</th>
+            </tr>
+            <tr>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/pokemon/82.png" alt="Magneton"></td>
+            </tr>
+            <tr>
+                <td align="center"><b>Level:</b> 79</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Gender:</b> Genderless</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Weight Class:</b> 4</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Size:</b> Medium</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Nature:</b> Distracted (<b>+</b>HP, <b>-</b>Def)</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Type:</b> <img src="http://www.ptu.panda-games.net/images/types/4.png"
+                                                     alt="4"><img
+                        src="http://www.ptu.panda-games.net/images/types/17.png" alt="17"></td>
+            </tr>
+            <tr>
+                <td id="pokemon_shiny"></td>
+            </tr>
+            <tr>
+                <td align="center"><b>Capabilites:</b> Overland 3, Swim 4, Levitate 5, Jump 1/1, Power 4, Intelligence
+                    4, Dead Silent, Magnetic, Zapper
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><b>Skills:</b> Athl 3d6, Acro 2d6+1, Combat 2d6+2, Stealth 2d6+1, Percep 3d6+2, Focus
+                    3d6+2
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table border="1" id="stat_table">
+            <tbody>
+            <tr>
+                <th>Stats</th>
+                <th>Base</th>
+                <th>Total</th>
+                <th>Combat Stage</th>
+                <th>Altered Stat</th>
+            </tr>
+            <tr style="color: blue">
+                <th>HP</th>
+                <td align="center">6</td>
+                <td align="center">19</td>
+            </tr>
+            <tr>
+                <th>Atk</th>
+                <td align="center">6</td>
+                <td align="center" id="totalAtk_0">17</td>
+                <td align="center"><select id="Atk_stage_0" onchange="combat_stage(&quot;Atk&quot;, 0);">
+                    <option value=".25">-6</option>
+                    <option value=".375">-5</option>
+                    <option value=".5">-4</option>
+                    <option value=".625">-3</option>
+                    <option value=".75">-2</option>
+                    <option value=".875">-1</option>
+                    <option value="1" selected="selected">0</option>
+                    <option value="1.25">1</option>
+                    <option value="1.5">2</option>
+                    <option value="1.75">3</option>
+                    <option value="2">4</option>
+                    <option value="2.25">5</option>
+                    <option value="2.5">6</option>
+                </select></td>
+                <td align="center" id="changed_Atk_0">17</td>
+            </tr>
+            <tr style="color: red">
+                <th>Def</th>
+                <td align="center">8</td>
+                <td align="center" id="totalDef_0">24</td>
+                <td align="center"><select id="Def_stage_0" onchange="combat_stage(&quot;Def&quot;, 0);">
+                    <option value=".25">-6</option>
+                    <option value=".375">-5</option>
+                    <option value=".5">-4</option>
+                    <option value=".625">-3</option>
+                    <option value=".75">-2</option>
+                    <option value=".875">-1</option>
+                    <option value="1" selected="selected">0</option>
+                    <option value="1.25">1</option>
+                    <option value="1.5">2</option>
+                    <option value="1.75">3</option>
+                    <option value="2">4</option>
+                    <option value="2.25">5</option>
+                    <option value="2.5">6</option>
+                </select></td>
+                <td align="center" id="changed_Def_0">24</td>
+            </tr>
+            <tr>
+                <th>SpAtk</th>
+                <td align="center">12</td>
+                <td align="center" id="totalSpAtk_0">30</td>
+                <td align="center"><select id="SpAtk_stage_0" onchange="combat_stage(&quot;SpAtk&quot;, 0);">
+                    <option value=".25">-6</option>
+                    <option value=".375">-5</option>
+                    <option value=".5">-4</option>
+                    <option value=".625">-3</option>
+                    <option value=".75">-2</option>
+                    <option value=".875">-1</option>
+                    <option value="1" selected="selected">0</option>
+                    <option value="1.25">1</option>
+                    <option value="1.5">2</option>
+                    <option value="1.75">3</option>
+                    <option value="2">4</option>
+                    <option value="2.25">5</option>
+                    <option value="2.5">6</option>
+                </select></td>
+                <td align="center" id="changed_SpAtk_0">30</td>
+            </tr>
+            <tr>
+                <th>SpDef</th>
+                <td align="center">7</td>
+                <td align="center" id="totalSpDef_0">22</td>
+                <td align="center"><select id="SpDef_stage_0" onchange="combat_stage(&quot;SpDef&quot;, 0);">
+                    <option value=".25">-6</option>
+                    <option value=".375">-5</option>
+                    <option value=".5">-4</option>
+                    <option value=".625">-3</option>
+                    <option value=".75">-2</option>
+                    <option value=".875">-1</option>
+                    <option value="1" selected="selected">0</option>
+                    <option value="1.25">1</option>
+                    <option value="1.5">2</option>
+                    <option value="1.75">3</option>
+                    <option value="2">4</option>
+                    <option value="2.25">5</option>
+                    <option value="2.5">6</option>
+                </select></td>
+                <td align="center" id="changed_SpDef_0">22</td>
+            </tr>
+            <tr>
+                <th>Speed</th>
+                <td align="center">7</td>
+                <td align="center" id="totalSpeed_0">23</td>
+                <td align="center"><select id="Speed_stage_0" onchange="combat_stage(&quot;Speed&quot;, 0);">
+                    <option value=".25">-6</option>
+                    <option value=".375">-5</option>
+                    <option value=".5">-4</option>
+                    <option value=".625">-3</option>
+                    <option value=".75">-2</option>
+                    <option value=".875">-1</option>
+                    <option value="1" selected="selected">0</option>
+                    <option value="1.25">1</option>
+                    <option value="1.5">2</option>
+                    <option value="1.75">3</option>
+                    <option value="2">4</option>
+                    <option value="2.25">5</option>
+                    <option value="2.5">6</option>
+                </select></td>
+                <td align="center" id="changed_Speed_0">23</td>
+            </tr>
+            <tr>
+                <td colspan="3">Total Stat Points:89</td>
+            </tr>
+            </tbody>
+        </table>
+        <table border="1" id="hp_table">
+            <tbody>
+            <tr>
+                <th colspan="2">Hit Points</th>
+            </tr>
+            <tr>
+                <th>100%:</th>
+                <td align="center">146</td>
+            </tr>
+            <tr>
+                <th>75%:</th>
+                <td align="center">109</td>
+            </tr>
+            <tr>
+                <th>50%:</th>
+                <td align="center">73</td>
+            </tr>
+            <tr>
+                <th>25%:</th>
+                <td align="center">36</td>
+            </tr>
+            <tr>
+                <th>1/3rd:</th>
+                <td align="center">48</td>
+            </tr>
+            <tr>
+                <th>1/6th:</th>
+                <td align="center">24</td>
+            </tr>
+            <tr>
+                <th>1/8th:</th>
+                <td align="center">18</td>
+            </tr>
+            <tr>
+                <th>1/10th:</th>
+                <td align="center">14</td>
+            </tr>
+            <tr>
+                <th>1/16th:</th>
+                <td align="center">9</td>
+            </tr>
+            </tbody>
+        </table>
+        <table border="1" id="evasions">
+            <tbody>
+            <tr>
+                <th colspan="2">Evasions</th>
+            </tr>
+            <tr>
+                <th>Physical Evasion:</th>
+                <td align="center">4</td>
+            </tr>
+            <tr>
+                <th>Special Evasion:</th>
+                <td align="center">4</td>
+            </tr>
+            <tr>
+                <th>Speed Evasion:</th>
+                <td align="center">4</td>
+            </tr>
+            </tbody>
+        </table>
+        <table border="1" id="weakness_table">
+            <tbody>
+            <tr>
+                <th colspan="9">Weaknesses and Resitances</th>
+            </tr>
+            <tr>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/1.png" alt="Bug"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/2.png" alt="Dark"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/3.png" alt="Dragon"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/4.png" alt="Electric"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/5.png" alt="Fairy"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/6.png" alt="Fighting"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/7.png" alt="Fire"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/8.png" alt="Flying"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/9.png" alt="Ghost"></td>
+            </tr>
+            <tr>
+                <td align="center">x0.5</td>
+                <td align="center">x1</td>
+                <td align="center">x0.5</td>
+                <td align="center">x0.5</td>
+                <td align="center">x0.5</td>
+                <td align="center">x2</td>
+                <td align="center">x2</td>
+                <td align="center">x0.25</td>
+                <td align="center">x1</td>
+            </tr>
+            <tr>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/10.png" alt="Grass"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/11.png" alt="Ground"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/12.png" alt="Ice"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/13.png" alt="Normal"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/14.png" alt="Poison"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/15.png" alt="Psychic"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/16.png" alt="Rock"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/17.png" alt="Steel"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/18.png" alt="Water"></td>
+            </tr>
+            <tr>
+                <td align="center">x0.5</td>
+                <td align="center">x3</td>
+                <td align="center">x0.5</td>
+                <td align="center">x0.5</td>
+                <td align="center">x0</td>
+                <td align="center">x0.5</td>
+                <td align="center">x0.5</td>
+                <td align="center">x0.25</td>
+                <td align="center">x1</td>
+            </tr>
+            </tbody>
+        </table>
+        <table border="1" width="400em" id="abilites_table">
+            <tbody>
+            <tr>
+                <th colspan="2">Abilities</th>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Magnet Pull</th>
+            </tr>
+            <tr>
+                <th colspan="2">Basic Ability</th>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>At-Will - Swift Action</td>
+            </tr>
+            <tr>
+                <td>Trigger:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Target:</td>
+                <td>A Steel-Type Pokemon</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>294</td>
+            </tr>
+            <tr>
+                <td colspan="2">Until the end of the user’s next turn, the target may not move more then 8-meters away
+                    from the user and/or may not move closer than 3-meters to the user.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Targeting System</th>
+            </tr>
+            <tr>
+                <th colspan="2">High Ability</th>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Scene - Free Action</td>
+            </tr>
+            <tr>
+                <td>Trigger:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Target:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>303</td>
+            </tr>
+            <tr>
+                <td colspan="2">Connection – Lock On. By activating this Ability, the target may use Lock-On as a Swift
+                    Action.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Analytic</th>
+            </tr>
+            <tr>
+                <th colspan="2">Advanced Ability</th>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Static</td>
+            </tr>
+            <tr>
+                <td>Trigger:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Target:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>282</td>
+            </tr>
+            <tr>
+                <td colspan="2">Whenever the user targets uses a damaging Move on a Pokémon or Trainer that has acted
+                    before it during Initiative this Round, that Move deals an additional +5 Damage.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <table border="1" width="400em" id="moves_table">
+            <tbody>
+            <tr>
+                <th colspan="2">Moves</th>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Zap Cannon</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>73</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>At-Will</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/4.png" alt="4"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Special.png" alt="Special"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td style="color: blue;">Damage:</td>
+                <td style="color: blue;">Base 14: 4d10+15+SpAtk(30) <br> Set Damage: 40+SpAtk(30)</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>12, 1 Target</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Cool - Incentives</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>329</td>
+            </tr>
+            <tr>
+                <td colspan="2">Zap Cannon Paralyzes the target. Zap Cannon ignores the target’s Evasion if there are no
+                    other combatants or Rough or Blocking Terrain within 2 meters of the target.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Screech</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>45</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Every Other Turn</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/13.png" alt="13"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Status.png" alt="Status"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Damage:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>Burst 2, Friendly, Sonic</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Smart - Unsettling</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>375</td>
+            </tr>
+            <tr>
+                <td colspan="2">All Legal Targets have their Defense lowered 2 Combat Stages.</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Gyro Ball</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>67</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Scene x2</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/17.png" alt="17"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Physical.png" alt="Physical"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td style="color: blue;">Damage:</td>
+                <td style="color: blue;">Base 8: 2d8+10+Atk(17) <br> Set Damage: 19+Atk(17)</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>6, 1 Target</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Beauty - Double Time</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>398</td>
+            </tr>
+            <tr>
+                <td colspan="2">The target reveals their Speed Stat (including Combat Stages). If it is higher than the
+                    user’s (again, including Combat Stages), subtract the user’s Speed Stat from the target’s, and apply
+                    the difference as Bonus Damage.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Thunder Shock</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>At-Will</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/4.png" alt="4"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Special.png" alt="Special"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td style="color: blue;">Damage:</td>
+                <td style="color: blue;">Base 6: 2d6+8+SpAtk(30) <br> Set Damage: 15+SpAtk(30)</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>4, 1 Target</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Cool - Steady Performance</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>328</td>
+            </tr>
+            <tr>
+                <td colspan="2">Thunder Shock Paralyzes the target on 17+. Grants Zapper</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Discharge</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>51</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Every Other Turn</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/4.png" alt="4"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Special.png" alt="Special"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td style="color: blue;">Damage:</td>
+                <td style="color: blue;">Base 10: 3d8+10+SpAtk(30) <br> Set Damage: 24+SpAtk(30)</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>All Cardinally Adjacent Targets</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Cool - Exhausting Act</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>326</td>
+            </tr>
+            <tr>
+                <td colspan="2">Discharge Paralyzes all legal targets on 15+.</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Magnet Bomb</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Every Other Turn</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/17.png" alt="17"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Physical.png" alt="Physical"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="color: blue;">Damage:</td>
+                <td style="color: blue;">Base 8: 2d8+10+Atk(17) <br> Set Damage: 19+Atk(17)</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>8, 1 target</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Cool - Steady Performance</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>399</td>
+            </tr>
+            <tr>
+                <td colspan="2">Magnet Bomb cannot miss. Grants Magnetic</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <table border="1" id="rate_calc">
+            <tbody>
+            <tr>
+                <th colspan="2">Capture Rate Calculator</th>
+            </tr>
+            <tr>
+                <th>Current/Max HP:</th>
+                <td align="center"><select id="currentHP_0">
+                    <option value="146">146</option>
+                    <option value="145">145</option>
+                    <option value="144">144</option>
+                    <option value="143">143</option>
+                    <option value="142">142</option>
+                    <option value="141">141</option>
+                    <option value="140">140</option>
+                    <option value="139">139</option>
+                    <option value="138">138</option>
+                    <option value="137">137</option>
+                    <option value="136">136</option>
+                    <option value="135">135</option>
+                    <option value="134">134</option>
+                    <option value="133">133</option>
+                    <option value="132">132</option>
+                    <option value="131">131</option>
+                    <option value="130">130</option>
+                    <option value="129">129</option>
+                    <option value="128">128</option>
+                    <option value="127">127</option>
+                    <option value="126">126</option>
+                    <option value="125">125</option>
+                    <option value="124">124</option>
+                    <option value="123">123</option>
+                    <option value="122">122</option>
+                    <option value="121">121</option>
+                    <option value="120">120</option>
+                    <option value="119">119</option>
+                    <option value="118">118</option>
+                    <option value="117">117</option>
+                    <option value="116">116</option>
+                    <option value="115">115</option>
+                    <option value="114">114</option>
+                    <option value="113">113</option>
+                    <option value="112">112</option>
+                    <option value="111">111</option>
+                    <option value="110">110</option>
+                    <option value="109">109</option>
+                    <option value="108">108</option>
+                    <option value="107">107</option>
+                    <option value="106">106</option>
+                    <option value="105">105</option>
+                    <option value="104">104</option>
+                    <option value="103">103</option>
+                    <option value="102">102</option>
+                    <option value="101">101</option>
+                    <option value="100">100</option>
+                    <option value="99">99</option>
+                    <option value="98">98</option>
+                    <option value="97">97</option>
+                    <option value="96">96</option>
+                    <option value="95">95</option>
+                    <option value="94">94</option>
+                    <option value="93">93</option>
+                    <option value="92">92</option>
+                    <option value="91">91</option>
+                    <option value="90">90</option>
+                    <option value="89">89</option>
+                    <option value="88">88</option>
+                    <option value="87">87</option>
+                    <option value="86">86</option>
+                    <option value="85">85</option>
+                    <option value="84">84</option>
+                    <option value="83">83</option>
+                    <option value="82">82</option>
+                    <option value="81">81</option>
+                    <option value="80">80</option>
+                    <option value="79">79</option>
+                    <option value="78">78</option>
+                    <option value="77">77</option>
+                    <option value="76">76</option>
+                    <option value="75">75</option>
+                    <option value="74">74</option>
+                    <option value="73">73</option>
+                    <option value="72">72</option>
+                    <option value="71">71</option>
+                    <option value="70">70</option>
+                    <option value="69">69</option>
+                    <option value="68">68</option>
+                    <option value="67">67</option>
+                    <option value="66">66</option>
+                    <option value="65">65</option>
+                    <option value="64">64</option>
+                    <option value="63">63</option>
+                    <option value="62">62</option>
+                    <option value="61">61</option>
+                    <option value="60">60</option>
+                    <option value="59">59</option>
+                    <option value="58">58</option>
+                    <option value="57">57</option>
+                    <option value="56">56</option>
+                    <option value="55">55</option>
+                    <option value="54">54</option>
+                    <option value="53">53</option>
+                    <option value="52">52</option>
+                    <option value="51">51</option>
+                    <option value="50">50</option>
+                    <option value="49">49</option>
+                    <option value="48">48</option>
+                    <option value="47">47</option>
+                    <option value="46">46</option>
+                    <option value="45">45</option>
+                    <option value="44">44</option>
+                    <option value="43">43</option>
+                    <option value="42">42</option>
+                    <option value="41">41</option>
+                    <option value="40">40</option>
+                    <option value="39">39</option>
+                    <option value="38">38</option>
+                    <option value="37">37</option>
+                    <option value="36">36</option>
+                    <option value="35">35</option>
+                    <option value="34">34</option>
+                    <option value="33">33</option>
+                    <option value="32">32</option>
+                    <option value="31">31</option>
+                    <option value="30">30</option>
+                    <option value="29">29</option>
+                    <option value="28">28</option>
+                    <option value="27">27</option>
+                    <option value="26">26</option>
+                    <option value="25">25</option>
+                    <option value="24">24</option>
+                    <option value="23">23</option>
+                    <option value="22">22</option>
+                    <option value="21">21</option>
+                    <option value="20">20</option>
+                    <option value="19">19</option>
+                    <option value="18">18</option>
+                    <option value="17">17</option>
+                    <option value="16">16</option>
+                    <option value="15">15</option>
+                    <option value="14">14</option>
+                    <option value="13">13</option>
+                    <option value="12">12</option>
+                    <option value="11">11</option>
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+                </select>/146
+                </td>
+            </tr>
+            <tr>
+                <th>Injuries (Other Than HP):</th>
+                <td><select id="injuries_0">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select></td>
+            </tr>
+
+            <tr>
+                <th colspan="2">Status Conditions</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="stuck_0">Stuck</td>
+                <td><input type="checkbox" id="slow_0">Slow</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="burned_0">Burned</td>
+                <td><input type="checkbox" id="frozen_0">Frozen</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="paralyzed_0">Paralyzed</td>
+                <td><input type="checkbox" id="poison_0">Poisoned</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="sleep_0">Sleep</td>
+                <td><input type="checkbox" id="badsleep_0">Bad Sleep</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="confused_0">Confused</td>
+                <td><input type="checkbox" id="cursed_0">Cursed</td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="button" onclick="capture_pokemon(0);">Calculate Capture Rate!</button>
+                </td>
+            </tr>
+
+            <tr>
+                <th>This Pokemon is Captured<br> on a Roll lower than:<br>(or 100)</th>
+                <td id="capture_rate_0" align="center"></td>
+            </tr>
+
+            <tr hidden="true">
+                <td id="is_pokemon_shiny_0">Not Shiny</td>
+                <td id="is_pokemon_legendary_0">Not Legendary</td>
+            </tr>
+            <tr hidden="true">
+                <td id="number_evols_0">1</td>
+                <td id="level_0">79</td>
+            </tr>
+            <tr hidden="true">
+                <td id="totalHP_0">146</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pokemon"><br>
+        <hr>
+        <br>
+
+
+        <table border="1" width="300em" id="info_table">
+            <tbody>
+            <tr>
+                <th>#119 - Seaking</th>
+            </tr>
+            <tr>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/pokemon/119.png" alt="Seaking"></td>
+            </tr>
+            <tr>
+                <td align="center"><b>Level:</b> 98</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Gender:</b> Female</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Weight Class:</b> 3</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Size:</b> Medium</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Nature:</b> Jolly (<b>+</b>Speed, <b>-</b>SpAtk)</td>
+            </tr>
+            <tr>
+                <td align="center"><b>Type:</b> <img src="http://www.ptu.panda-games.net/images/types/18.png" alt="18">
+                </td>
+            </tr>
+            <tr>
+                <td id="pokemon_shiny"></td>
+            </tr>
+            <tr>
+                <td align="center"><b>Capabilites:</b> Overland 1, Swim 6, Jump 3/3, Power 3, Intelligence 4, Gilled
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><b>Skills:</b> Athl 4d6, Acro 3d6+1, Combat 3d6+1, Stealth 2d6, Percep 2d6, Focus 3d6
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table border="1" id="stat_table">
+            <tbody>
+            <tr>
+                <th>Stats</th>
+                <th>Base</th>
+                <th>Total</th>
+                <th>Combat Stage</th>
+                <th>Altered Stat</th>
+            </tr>
+            <tr>
+                <th>HP</th>
+                <td align="center">8</td>
+                <td align="center">24</td>
+            </tr>
+            <tr>
+                <th>Atk</th>
+                <td align="center">9</td>
+                <td align="center" id="totalAtk_1">34</td>
+                <td align="center"><select id="Atk_stage_1" onchange="combat_stage(&quot;Atk&quot;, 1);">
+                    <option value=".25">-6</option>
+                    <option value=".375">-5</option>
+                    <option value=".5">-4</option>
+                    <option value=".625">-3</option>
+                    <option value=".75">-2</option>
+                    <option value=".875">-1</option>
+                    <option value="1" selected="selected">0</option>
+                    <option value="1.25">1</option>
+                    <option value="1.5">2</option>
+                    <option value="1.75">3</option>
+                    <option value="2">4</option>
+                    <option value="2.25">5</option>
+                    <option value="2.5">6</option>
+                </select></td>
+                <td align="center" id="changed_Atk_1">34</td>
+            </tr>
+            <tr>
+                <th>Def</th>
+                <td align="center">7</td>
+                <td align="center" id="totalDef_1">21</td>
+                <td align="center"><select id="Def_stage_1" onchange="combat_stage(&quot;Def&quot;, 1);">
+                    <option value=".25">-6</option>
+                    <option value=".375">-5</option>
+                    <option value=".5">-4</option>
+                    <option value=".625">-3</option>
+                    <option value=".75">-2</option>
+                    <option value=".875">-1</option>
+                    <option value="1" selected="selected">0</option>
+                    <option value="1.25">1</option>
+                    <option value="1.5">2</option>
+                    <option value="1.75">3</option>
+                    <option value="2">4</option>
+                    <option value="2.25">5</option>
+                    <option value="2.5">6</option>
+                </select></td>
+                <td align="center" id="changed_Def_1">21</td>
+            </tr>
+            <tr style="color: red">
+                <th>SpAtk</th>
+                <td align="center">5</td>
+                <td align="center" id="totalSpAtk_1">16</td>
+                <td align="center"><select id="SpAtk_stage_1" onchange="combat_stage(&quot;SpAtk&quot;, 1);">
+                    <option value=".25">-6</option>
+                    <option value=".375">-5</option>
+                    <option value=".5">-4</option>
+                    <option value=".625">-3</option>
+                    <option value=".75">-2</option>
+                    <option value=".875">-1</option>
+                    <option value="1" selected="selected">0</option>
+                    <option value="1.25">1</option>
+                    <option value="1.5">2</option>
+                    <option value="1.75">3</option>
+                    <option value="2">4</option>
+                    <option value="2.25">5</option>
+                    <option value="2.5">6</option>
+                </select></td>
+                <td align="center" id="changed_SpAtk_1">16</td>
+            </tr>
+            <tr>
+                <th>SpDef</th>
+                <td align="center">8</td>
+                <td align="center" id="totalSpDef_1">28</td>
+                <td align="center"><select id="SpDef_stage_1" onchange="combat_stage(&quot;SpDef&quot;, 1);">
+                    <option value=".25">-6</option>
+                    <option value=".375">-5</option>
+                    <option value=".5">-4</option>
+                    <option value=".625">-3</option>
+                    <option value=".75">-2</option>
+                    <option value=".875">-1</option>
+                    <option value="1" selected="selected">0</option>
+                    <option value="1.25">1</option>
+                    <option value="1.5">2</option>
+                    <option value="1.75">3</option>
+                    <option value="2">4</option>
+                    <option value="2.25">5</option>
+                    <option value="2.5">6</option>
+                </select></td>
+                <td align="center" id="changed_SpDef_1">28</td>
+            </tr>
+            <tr style="color: blue">
+                <th>Speed</th>
+                <td align="center">9</td>
+                <td align="center" id="totalSpeed_1">31</td>
+                <td align="center"><select id="Speed_stage_1" onchange="combat_stage(&quot;Speed&quot;, 1);">
+                    <option value=".25">-6</option>
+                    <option value=".375">-5</option>
+                    <option value=".5">-4</option>
+                    <option value=".625">-3</option>
+                    <option value=".75">-2</option>
+                    <option value=".875">-1</option>
+                    <option value="1" selected="selected">0</option>
+                    <option value="1.25">1</option>
+                    <option value="1.5">2</option>
+                    <option value="1.75">3</option>
+                    <option value="2">4</option>
+                    <option value="2.25">5</option>
+                    <option value="2.5">6</option>
+                </select></td>
+                <td align="center" id="changed_Speed_1">31</td>
+            </tr>
+            <tr>
+                <td colspan="3">Total Stat Points:108</td>
+            </tr>
+            </tbody>
+        </table>
+        <table border="1" id="hp_table">
+            <tbody>
+            <tr>
+                <th colspan="2">Hit Points</th>
+            </tr>
+            <tr>
+                <th>100%:</th>
+                <td align="center">180</td>
+            </tr>
+            <tr>
+                <th>75%:</th>
+                <td align="center">135</td>
+            </tr>
+            <tr>
+                <th>50%:</th>
+                <td align="center">90</td>
+            </tr>
+            <tr>
+                <th>25%:</th>
+                <td align="center">45</td>
+            </tr>
+            <tr>
+                <th>1/3rd:</th>
+                <td align="center">60</td>
+            </tr>
+            <tr>
+                <th>1/6th:</th>
+                <td align="center">30</td>
+            </tr>
+            <tr>
+                <th>1/8th:</th>
+                <td align="center">22</td>
+            </tr>
+            <tr>
+                <th>1/10th:</th>
+                <td align="center">18</td>
+            </tr>
+            <tr>
+                <th>1/16th:</th>
+                <td align="center">11</td>
+            </tr>
+            </tbody>
+        </table>
+        <table border="1" id="evasions">
+            <tbody>
+            <tr>
+                <th colspan="2">Evasions</th>
+            </tr>
+            <tr>
+                <th>Physical Evasion:</th>
+                <td align="center">4</td>
+            </tr>
+            <tr>
+                <th>Special Evasion:</th>
+                <td align="center">5</td>
+            </tr>
+            <tr>
+                <th>Speed Evasion:</th>
+                <td align="center">6</td>
+            </tr>
+            </tbody>
+        </table>
+        <table border="1" id="weakness_table">
+            <tbody>
+            <tr>
+                <th colspan="9">Weaknesses and Resitances</th>
+            </tr>
+            <tr>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/1.png" alt="Bug"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/2.png" alt="Dark"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/3.png" alt="Dragon"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/4.png" alt="Electric"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/5.png" alt="Fairy"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/6.png" alt="Fighting"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/7.png" alt="Fire"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/8.png" alt="Flying"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/9.png" alt="Ghost"></td>
+            </tr>
+            <tr>
+                <td align="center">x1</td>
+                <td align="center">x1</td>
+                <td align="center">x1</td>
+                <td align="center">x2</td>
+                <td align="center">x1</td>
+                <td align="center">x1</td>
+                <td align="center">x0.5</td>
+                <td align="center">x1</td>
+                <td align="center">x1</td>
+            </tr>
+            <tr>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/10.png" alt="Grass"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/11.png" alt="Ground"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/12.png" alt="Ice"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/13.png" alt="Normal"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/14.png" alt="Poison"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/15.png" alt="Psychic"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/16.png" alt="Rock"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/17.png" alt="Steel"></td>
+                <td align="center"><img src="http://www.ptu.panda-games.net/images/types/18.png" alt="Water"></td>
+            </tr>
+            <tr>
+                <td align="center">x2</td>
+                <td align="center">x1</td>
+                <td align="center">x0.5</td>
+                <td align="center">x1</td>
+                <td align="center">x1</td>
+                <td align="center">x1</td>
+                <td align="center">x1</td>
+                <td align="center">x0.5</td>
+                <td align="center">x0.5</td>
+            </tr>
+            </tbody>
+        </table>
+        <table border="1" width="400em" id="abilites_table">
+            <tbody>
+            <tr>
+                <th colspan="2">Abilities</th>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Water Veil</th>
+            </tr>
+            <tr>
+                <th colspan="2">Basic Ability</th>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Static</td>
+            </tr>
+            <tr>
+                <td>Trigger:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Target:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>306</td>
+            </tr>
+            <tr>
+                <td colspan="2">Immune to Burn.</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Swift Swim</th>
+            </tr>
+            <tr>
+                <th colspan="2">Advanced Ability</th>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Static</td>
+            </tr>
+            <tr>
+                <td>Trigger:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Target:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>303</td>
+            </tr>
+            <tr>
+                <td colspan="2">While in Rainy Weather, the user gains +4 Speed Combat Stages.</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Gulp</th>
+            </tr>
+            <tr>
+                <th colspan="2">Advanced Ability</th>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Daily - Extended Action</td>
+            </tr>
+            <tr>
+                <td>Trigger:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Target:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>290</td>
+            </tr>
+            <tr>
+                <td colspan="2">If the user is allowed to spend time fully submerged in water for at least 10 minutes,
+                    they may heal up to 25% of their Max Hit Points, and remove one Injury.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <table border="1" width="400em" id="moves_table">
+            <tbody>
+            <tr>
+                <th colspan="2">Moves</th>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Fury Attack</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>31</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>At-Will</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/13.png" alt="13"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Physical.png" alt="Physical"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Damage:</td>
+                <td>Base 2: 1d6+3+Atk(34) <br> Set Damage: 7+Atk(34)</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>Melee, 1 Target, Five Strike</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Cool - Reliable</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>366</td>
+            </tr>
+            <tr>
+                <td colspan="2">None</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Supersonic</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Scene x2</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/13.png" alt="13"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Status.png" alt="Status"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>Damage:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>4, 1 Target, Sonic</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Smart - Excitement</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>379</td>
+            </tr>
+            <tr>
+                <td colspan="2">Supersonic Confuses all Legal Targets.</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Flail</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>21</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Every Other Turn</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/13.png" alt="13"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Physical.png" alt="Physical"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Damage:</td>
+                <td>Base 7: 2d6+10+Atk(34) <br> Set Damage: 17+Atk(34)</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>Melee, 1 Target</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Cute - Double Time</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>366</td>
+            </tr>
+            <tr>
+                <td colspan="2">For each Injury the user has, Flail’s Damage Base is increased by +1.</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Megahorn</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>72</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Scene x2</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/1.png" alt="1"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Physical.png" alt="Physical"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Damage:</td>
+                <td>Base 12: 3d12+10+Atk(34) <br> Set Damage: 30+Atk(34)</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>Melee, 1 Target, Push</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Cool - Desperation</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>317</td>
+            </tr>
+            <tr>
+                <td colspan="2">The target is pushed 1 Meter.</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Water Pulse</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>17</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>At-Will</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/18.png" alt="18"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Special.png" alt="Special"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td style="color: blue;">Damage:</td>
+                <td style="color: blue;">Base 8: 2d8+10+SpAtk(16) <br> Set Damage: 19+SpAtk(16)</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>8, 1 Target, Aura</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Beauty - Exhausting Act</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>403</td>
+            </tr>
+            <tr>
+                <td colspan="2">Water Pulse Confuses the target on 17+.</td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Soak</th>
+            </tr>
+            <tr>
+                <td>Level Learned:</td>
+                <td>63</td>
+            </tr>
+            <tr>
+                <td>Frequency:</td>
+                <td>Daily</td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/18.png" alt="18"></td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td><img src="http://www.ptu.panda-games.net/images/types/Status.png" alt="Status"></td>
+            </tr>
+            <tr>
+                <td>Accuracy Check:</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Damage:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Range:</td>
+                <td>5, 1 Target</td>
+            </tr>
+            <tr>
+                <td>Contest:</td>
+                <td>Beauty - Safe Option</td>
+            </tr>
+            <tr>
+                <td>PageNum:</td>
+                <td>403</td>
+            </tr>
+            <tr>
+                <td colspan="2">The target gains the Water Type in addition to its other Types for 5 turns.</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <table border="1" id="rate_calc">
+            <tbody>
+            <tr>
+                <th colspan="2">Capture Rate Calculator</th>
+            </tr>
+            <tr>
+                <th>Current/Max HP:</th>
+                <td align="center"><select id="currentHP_1">
+                    <option value="180">180</option>
+                    <option value="179">179</option>
+                    <option value="178">178</option>
+                    <option value="177">177</option>
+                    <option value="176">176</option>
+                    <option value="175">175</option>
+                    <option value="174">174</option>
+                    <option value="173">173</option>
+                    <option value="172">172</option>
+                    <option value="171">171</option>
+                    <option value="170">170</option>
+                    <option value="169">169</option>
+                    <option value="168">168</option>
+                    <option value="167">167</option>
+                    <option value="166">166</option>
+                    <option value="165">165</option>
+                    <option value="164">164</option>
+                    <option value="163">163</option>
+                    <option value="162">162</option>
+                    <option value="161">161</option>
+                    <option value="160">160</option>
+                    <option value="159">159</option>
+                    <option value="158">158</option>
+                    <option value="157">157</option>
+                    <option value="156">156</option>
+                    <option value="155">155</option>
+                    <option value="154">154</option>
+                    <option value="153">153</option>
+                    <option value="152">152</option>
+                    <option value="151">151</option>
+                    <option value="150">150</option>
+                    <option value="149">149</option>
+                    <option value="148">148</option>
+                    <option value="147">147</option>
+                    <option value="146">146</option>
+                    <option value="145">145</option>
+                    <option value="144">144</option>
+                    <option value="143">143</option>
+                    <option value="142">142</option>
+                    <option value="141">141</option>
+                    <option value="140">140</option>
+                    <option value="139">139</option>
+                    <option value="138">138</option>
+                    <option value="137">137</option>
+                    <option value="136">136</option>
+                    <option value="135">135</option>
+                    <option value="134">134</option>
+                    <option value="133">133</option>
+                    <option value="132">132</option>
+                    <option value="131">131</option>
+                    <option value="130">130</option>
+                    <option value="129">129</option>
+                    <option value="128">128</option>
+                    <option value="127">127</option>
+                    <option value="126">126</option>
+                    <option value="125">125</option>
+                    <option value="124">124</option>
+                    <option value="123">123</option>
+                    <option value="122">122</option>
+                    <option value="121">121</option>
+                    <option value="120">120</option>
+                    <option value="119">119</option>
+                    <option value="118">118</option>
+                    <option value="117">117</option>
+                    <option value="116">116</option>
+                    <option value="115">115</option>
+                    <option value="114">114</option>
+                    <option value="113">113</option>
+                    <option value="112">112</option>
+                    <option value="111">111</option>
+                    <option value="110">110</option>
+                    <option value="109">109</option>
+                    <option value="108">108</option>
+                    <option value="107">107</option>
+                    <option value="106">106</option>
+                    <option value="105">105</option>
+                    <option value="104">104</option>
+                    <option value="103">103</option>
+                    <option value="102">102</option>
+                    <option value="101">101</option>
+                    <option value="100">100</option>
+                    <option value="99">99</option>
+                    <option value="98">98</option>
+                    <option value="97">97</option>
+                    <option value="96">96</option>
+                    <option value="95">95</option>
+                    <option value="94">94</option>
+                    <option value="93">93</option>
+                    <option value="92">92</option>
+                    <option value="91">91</option>
+                    <option value="90">90</option>
+                    <option value="89">89</option>
+                    <option value="88">88</option>
+                    <option value="87">87</option>
+                    <option value="86">86</option>
+                    <option value="85">85</option>
+                    <option value="84">84</option>
+                    <option value="83">83</option>
+                    <option value="82">82</option>
+                    <option value="81">81</option>
+                    <option value="80">80</option>
+                    <option value="79">79</option>
+                    <option value="78">78</option>
+                    <option value="77">77</option>
+                    <option value="76">76</option>
+                    <option value="75">75</option>
+                    <option value="74">74</option>
+                    <option value="73">73</option>
+                    <option value="72">72</option>
+                    <option value="71">71</option>
+                    <option value="70">70</option>
+                    <option value="69">69</option>
+                    <option value="68">68</option>
+                    <option value="67">67</option>
+                    <option value="66">66</option>
+                    <option value="65">65</option>
+                    <option value="64">64</option>
+                    <option value="63">63</option>
+                    <option value="62">62</option>
+                    <option value="61">61</option>
+                    <option value="60">60</option>
+                    <option value="59">59</option>
+                    <option value="58">58</option>
+                    <option value="57">57</option>
+                    <option value="56">56</option>
+                    <option value="55">55</option>
+                    <option value="54">54</option>
+                    <option value="53">53</option>
+                    <option value="52">52</option>
+                    <option value="51">51</option>
+                    <option value="50">50</option>
+                    <option value="49">49</option>
+                    <option value="48">48</option>
+                    <option value="47">47</option>
+                    <option value="46">46</option>
+                    <option value="45">45</option>
+                    <option value="44">44</option>
+                    <option value="43">43</option>
+                    <option value="42">42</option>
+                    <option value="41">41</option>
+                    <option value="40">40</option>
+                    <option value="39">39</option>
+                    <option value="38">38</option>
+                    <option value="37">37</option>
+                    <option value="36">36</option>
+                    <option value="35">35</option>
+                    <option value="34">34</option>
+                    <option value="33">33</option>
+                    <option value="32">32</option>
+                    <option value="31">31</option>
+                    <option value="30">30</option>
+                    <option value="29">29</option>
+                    <option value="28">28</option>
+                    <option value="27">27</option>
+                    <option value="26">26</option>
+                    <option value="25">25</option>
+                    <option value="24">24</option>
+                    <option value="23">23</option>
+                    <option value="22">22</option>
+                    <option value="21">21</option>
+                    <option value="20">20</option>
+                    <option value="19">19</option>
+                    <option value="18">18</option>
+                    <option value="17">17</option>
+                    <option value="16">16</option>
+                    <option value="15">15</option>
+                    <option value="14">14</option>
+                    <option value="13">13</option>
+                    <option value="12">12</option>
+                    <option value="11">11</option>
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+                </select>/180
+                </td>
+            </tr>
+            <tr>
+                <th>Injuries (Other Than HP):</th>
+                <td><select id="injuries_1">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select></td>
+            </tr>
+
+            <tr>
+                <th colspan="2">Status Conditions</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="stuck_1">Stuck</td>
+                <td><input type="checkbox" id="slow_1">Slow</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="burned_1">Burned</td>
+                <td><input type="checkbox" id="frozen_1">Frozen</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="paralyzed_1">Paralyzed</td>
+                <td><input type="checkbox" id="poison_1">Poisoned</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="sleep_1">Sleep</td>
+                <td><input type="checkbox" id="badsleep_1">Bad Sleep</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="confused_1">Confused</td>
+                <td><input type="checkbox" id="cursed_1">Cursed</td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="button" onclick="capture_pokemon(1);">Calculate Capture Rate!</button>
+                </td>
+            </tr>
+
+            <tr>
+                <th>This Pokemon is Captured<br> on a Roll lower than:<br>(or 100)</th>
+                <td id="capture_rate_1" align="center"></td>
+            </tr>
+
+            <tr hidden="true">
+                <td id="is_pokemon_shiny_1">Not Shiny</td>
+                <td id="is_pokemon_legendary_1">Not Legendary</td>
+            </tr>
+            <tr hidden="true">
+                <td id="number_evols_1">0</td>
+                <td id="level_1">98</td>
+            </tr>
+            <tr hidden="true">
+                <td id="totalHP_1">180</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
